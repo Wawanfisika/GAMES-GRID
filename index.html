@@ -18,9 +18,9 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #f0f9ff 100%);
             min-height: 100vh;
-            color: #f8fafc;
+            color: #0f172a;
         }
         .font-heading {
             font-family: 'Fredoka', cursive;
@@ -30,16 +30,17 @@
         }
         .grid-tile:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.25);
         }
         .glass-panel {
-            background: rgba(30, 41, 59, 0.75);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
         }
         .drop-zone-active {
             border-color: #818cf8 !important;
-            background: rgba(99, 102, 241, 0.25) !important;
+            background: rgba(99, 102, 241, 0.1) !important;
             scale: 1.01;
         }
         .pulse-subtle {
@@ -55,14 +56,14 @@
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(241, 245, 249, 0.8);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(99, 102, 241, 0.5);
+            background: rgba(99, 102, 241, 0.4);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(99, 102, 241, 0.8);
+            background: rgba(99, 102, 241, 0.7);
         }
     </style>
 </head>
@@ -71,19 +72,19 @@
     <!-- Navigation Header -->
     <header class="max-w-7xl mx-auto w-full mb-6 flex flex-wrap items-center justify-between gap-4 glass-panel p-4 rounded-2xl shadow-xl">
         <div class="flex items-center gap-3">
-            <div class="p-3 bg-gradient-to-tr from-indigo-600 via-violet-600 to-pink-500 rounded-xl shadow-lg">
-                <i class="fa-solid fa-brain text-3xl text-yellow-300 animate-pulse"></i>
+            <div class="p-3 bg-gradient-to-tr from-indigo-500 via-violet-500 to-pink-500 rounded-xl shadow-lg">
+                <i class="fa-solid fa-brain text-3xl text-white animate-pulse"></i>
             </div>
             <div>
                 <div class="flex items-center gap-2">
-                    <h1 class="text-2xl md:text-3xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-400 to-indigo-300">
+                    <h1 class="text-2xl md:text-3xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
                         MIPA GRID CLASH 5x5
                     </h1>
-                    <span class="bg-indigo-500/20 text-indigo-300 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-indigo-500/30">
+                    <span class="bg-indigo-100 text-indigo-700 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-indigo-200">
                         <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>AI PDF Auto-Reader
                     </span>
                 </div>
-                <p class="text-xs md:text-sm text-slate-300">Arena Kuis MIPA Interaktif • Membaca PDF Otomatis & Generate AI 25 Soal</p>
+                <p class="text-xs md:text-sm text-slate-600">Arena Kuis MIPA Interaktif • Membaca PDF Otomatis & Generate AI 25 Soal</p>
             </div>
         </div>
 
@@ -91,10 +92,10 @@
             <button id="btn-mode-game" onclick="switchView('game')" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 flex items-center gap-2">
                 <i class="fa-solid fa-gamepad"></i> Arena Game
             </button>
-            <button id="btn-mode-setup" onclick="switchView('setup')" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center gap-2">
+            <button id="btn-mode-setup" onclick="switchView('setup')" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-indigo-600 flex items-center gap-2">
                 <i class="fa-solid fa-sliders"></i> Opsi PDF & AI Generator
             </button>
-            <button onclick="toggleAudio()" id="btn-sound" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition" title="Mute/Unmute Suara">
+            <button onclick="toggleAudio()" id="btn-sound" class="p-2.5 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition" title="Mute/Unmute Suara">
                 <i class="fa-solid fa-volume-high text-lg"></i>
             </button>
         </div>
@@ -109,27 +110,27 @@
             <div class="lg:col-span-4 flex flex-col gap-4">
                 
                 <!-- Target Mission Card -->
-                <div class="glass-panel p-5 rounded-2xl border-l-4 border-yellow-400 shadow-md">
+                <div class="glass-panel p-5 rounded-2xl border-l-4 border-amber-400 shadow-sm">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-bold uppercase tracking-wider text-yellow-400 flex items-center gap-1">
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-600 flex items-center gap-1">
                             <i class="fa-solid fa-trophy"></i> Misi Kemenangan
                         </span>
-                        <span class="text-xs bg-yellow-400/20 text-yellow-300 px-2.5 py-0.5 rounded-full font-semibold">
+                        <span class="text-xs bg-amber-100 text-amber-700 px-2.5 py-0.5 rounded-full font-semibold">
                             3 in a Row
                         </span>
                     </div>
-                    <p class="text-xs md:text-sm text-slate-200">
+                    <p class="text-xs md:text-sm text-slate-700">
                         Klik kotak arena, jawab pertanyaan MIPA hasil olahan PDF/AI! Kelompok pertama yang membentuk <b>3 garis lurus sejajar</b> menjadi juara!
                     </p>
                 </div>
 
                 <!-- Teams Score & Turn Panel -->
-                <div class="glass-panel p-5 rounded-2xl flex flex-col gap-4 shadow-lg flex-1">
-                    <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
-                        <h2 class="font-heading text-lg font-bold text-slate-100 flex items-center gap-2">
-                            <i class="fa-solid fa-users text-indigo-400"></i> Tim / Kelompok
+                <div class="glass-panel p-5 rounded-2xl flex flex-col gap-4 shadow-sm flex-1">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <h2 class="font-heading text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-users text-indigo-500"></i> Tim / Kelompok
                         </h2>
-                        <button onclick="resetGameState()" class="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 bg-rose-500/10 hover:bg-rose-500/20 px-2.5 py-1 rounded-lg transition">
+                        <button onclick="resetGameState()" class="text-xs text-rose-600 hover:text-rose-700 flex items-center gap-1 bg-rose-50 hover:bg-rose-100 px-2.5 py-1 rounded-lg transition border border-rose-100">
                             <i class="fa-solid fa-rotate-right"></i> Reset Papan
                         </button>
                     </div>
@@ -140,12 +141,12 @@
                     </div>
 
                     <!-- Quick Status AI Source -->
-                    <div class="p-3 bg-indigo-950/40 border border-indigo-500/30 rounded-xl text-xs flex items-center justify-between">
+                    <div class="p-3 bg-indigo-50 border border-indigo-200 rounded-xl text-xs flex items-center justify-between">
                         <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-file-pdf text-rose-400 text-base"></i>
+                            <i class="fa-solid fa-file-pdf text-rose-500 text-base"></i>
                             <div>
-                                <span class="text-[10px] text-slate-400 block">Sumber Soal Saat Ini:</span>
-                                <span id="current-source-label" class="font-bold text-indigo-200">Preset MIPA Unggulan</span>
+                                <span class="text-[10px] text-slate-500 block">Sumber Soal Saat Ini:</span>
+                                <span id="current-source-label" class="font-bold text-indigo-700">Preset MIPA Unggulan</span>
                             </div>
                         </div>
                         <button onclick="switchView('setup')" class="text-[11px] bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-2.5 py-1 rounded-lg transition">
@@ -154,13 +155,13 @@
                     </div>
 
                     <!-- Game Log -->
-                    <div class="mt-auto border-t border-slate-700/60 pt-3">
-                        <div class="text-xs font-semibold text-slate-400 mb-2 flex items-center justify-between">
+                    <div class="mt-auto border-t border-slate-200 pt-3">
+                        <div class="text-xs font-semibold text-slate-500 mb-2 flex items-center justify-between">
                             <span><i class="fa-solid fa-clock-rotate-left mr-1"></i> Riwayat Permainan</span>
-                            <span id="claimed-count-badge" class="text-indigo-400 font-bold">0/25 Kotak</span>
+                            <span id="claimed-count-badge" class="text-indigo-600 font-bold">0/25 Kotak</span>
                         </div>
-                        <div id="game-log" class="text-xs text-slate-300 h-28 overflow-y-auto space-y-1.5 p-2 bg-slate-900/60 rounded-xl border border-slate-800">
-                            <p class="text-slate-500 italic">Game siap dimulai. Pilih salah satu kotak pada papan!</p>
+                        <div id="game-log" class="text-xs text-slate-600 h-28 overflow-y-auto space-y-1.5 p-2 bg-white rounded-xl border border-slate-200 shadow-inner">
+                            <p class="text-slate-400 italic">Game siap dimulai. Pilih salah satu kotak pada papan!</p>
                         </div>
                     </div>
                 </div>
@@ -169,18 +170,18 @@
 
             <!-- Right Area: 5x5 Grid Canvas -->
             <div class="lg:col-span-8 flex flex-col">
-                <div class="glass-panel p-4 md:p-6 rounded-2xl shadow-2xl flex-1 flex flex-col justify-center items-center relative">
+                <div class="glass-panel p-4 md:p-6 rounded-2xl shadow-lg flex-1 flex flex-col justify-center items-center relative">
                     
                     <!-- Top Info Tag -->
-                    <div class="w-full flex items-center justify-between mb-3 text-xs text-slate-300">
-                        <span class="flex items-center gap-1.5 font-semibold text-emerald-400">
+                    <div class="w-full flex items-center justify-between mb-3 text-xs text-slate-600">
+                        <span class="flex items-center gap-1.5 font-semibold text-emerald-600">
                             <i class="fa-solid fa-circle text-[8px] animate-pulse"></i> Papan Arena 5x5 Siap
                         </span>
-                        <span class="text-slate-400">Klik kotak untuk membuka soal MIPA</span>
+                        <span class="text-slate-500">Klik kotak untuk membuka soal MIPA</span>
                     </div>
 
                     <!-- 5x5 Grid Board -->
-                    <div id="grid-board" class="grid grid-cols-5 gap-2.5 md:gap-3.5 w-full max-w-[620px] aspect-square p-2 bg-slate-900/80 rounded-2xl border border-slate-800 shadow-inner">
+                    <div id="grid-board" class="grid grid-cols-5 gap-2.5 md:gap-3.5 w-full max-w-[620px] aspect-square p-2 bg-slate-100 rounded-2xl border border-slate-300 shadow-inner">
                         <!-- 25 Tiles Generated via JS -->
                     </div>
 
@@ -193,18 +194,18 @@
         <section id="view-setup" class="hidden flex-col gap-6">
             
             <!-- Setup Header Card -->
-            <div class="glass-panel p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 border-l-4 border-indigo-500">
+            <div class="glass-panel p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 border-l-4 border-indigo-400">
                 <div>
-                    <h2 class="text-2xl font-bold font-heading text-slate-100 flex items-center gap-2">
-                        <i class="fa-solid fa-wand-magic-sparkles text-yellow-400"></i> Auto PDF Reader & Generator Soal AI
+                    <h2 class="text-2xl font-bold font-heading text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i> Auto PDF Reader & Generator Soal AI
                     </h2>
-                    <p class="text-sm text-slate-300">Unggah berkas PDF untuk pembacaan otomatis, atau gunakan Generator AI berdasarkan Topik MIPA.</p>
+                    <p class="text-sm text-slate-600">Unggah berkas PDF untuk pembacaan otomatis, atau gunakan Generator AI berdasarkan Topik MIPA.</p>
                 </div>
                 <div class="flex gap-2 flex-wrap">
-                    <button onclick="loadDefaultPreset()" class="px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 rounded-xl text-sm font-semibold transition flex items-center gap-2">
+                    <button onclick="loadDefaultPreset()" class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-xl text-sm font-semibold transition flex items-center gap-2">
                         <i class="fa-solid fa-arrows-rotate"></i> Muat Reset Preset
                     </button>
-                    <button onclick="exportQuestionsJSON()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-sm font-semibold transition flex items-center gap-2">
+                    <button onclick="exportQuestionsJSON()" class="px-4 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-xl text-sm font-semibold transition flex items-center gap-2">
                         <i class="fa-solid fa-download"></i> Ekspor 25 Soal JSON
                     </button>
                 </div>
@@ -216,82 +217,82 @@
                 <div class="lg:col-span-5 flex flex-col gap-6">
                     
                     <!-- CARD 1: AUTOMATIC PDF UPLOAD & AUTO-GENERATE -->
-                    <div class="glass-panel p-5 rounded-2xl flex flex-col gap-4 border border-indigo-500/40 shadow-xl relative overflow-hidden">
+                    <div class="glass-panel p-5 rounded-2xl flex flex-col gap-4 border border-indigo-200 shadow-sm relative overflow-hidden">
                         <div class="flex items-center justify-between">
-                            <h3 class="font-heading font-bold text-lg text-indigo-300 flex items-center gap-2">
-                                <i class="fa-solid fa-file-pdf text-rose-400"></i> 1. Pembaca PDF Otomatis
+                            <h3 class="font-heading font-bold text-lg text-indigo-700 flex items-center gap-2">
+                                <i class="fa-solid fa-file-pdf text-rose-500"></i> 1. Pembaca PDF Otomatis
                             </h3>
-                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2.5 py-0.5 rounded-full border border-emerald-500/30">
+                            <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-2.5 py-0.5 rounded-full border border-emerald-200">
                                 <i class="fa-solid fa-bolt mr-1"></i>Auto Read
                             </span>
                         </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
+                        <p class="text-xs text-slate-600 leading-relaxed">
                             Pilih atau **tarik berkas PDF** di bawah. Aplikasi akan **otomatis membaca** seluruh teks PDF, mengekstrak soal, dan **langsung mengisi 25 kotak arena**!
                         </p>
 
                         <!-- PDF Drag & Drop Zone -->
-                        <div id="pdf-drop-zone" onclick="document.getElementById('pdf-file-input').click()" class="border-2 border-dashed border-indigo-500/50 hover:border-indigo-400 bg-slate-900/80 rounded-2xl p-6 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-3 group">
-                            <div class="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-400 group-hover:scale-110 group-hover:bg-rose-500/20 flex items-center justify-center text-3xl transition-all shadow-md">
+                        <div id="pdf-drop-zone" onclick="document.getElementById('pdf-file-input').click()" class="border-2 border-dashed border-indigo-300 hover:border-indigo-400 bg-indigo-50/50 rounded-2xl p-6 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-3 group">
+                            <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-500 group-hover:scale-110 group-hover:bg-rose-200 flex items-center justify-center text-3xl transition-all shadow-sm">
                                 <i class="fa-solid fa-cloud-arrow-up"></i>
                             </div>
                             <div>
-                                <p class="text-sm font-bold text-slate-100" id="pdf-file-name-display">Klik atau Tarik File PDF ke Sini</p>
-                                <p class="text-xs text-slate-400 mt-1" id="pdf-file-info-display">Otomatis membaca & generate 25 kotak kuis</p>
+                                <p class="text-sm font-bold text-slate-800" id="pdf-file-name-display">Klik atau Tarik File PDF ke Sini</p>
+                                <p class="text-xs text-slate-500 mt-1" id="pdf-file-info-display">Otomatis membaca & generate 25 kotak kuis</p>
                             </div>
                             <input type="file" id="pdf-file-input" accept=".pdf" class="hidden" onchange="handlePDFFileSelected(this.files[0])" />
                         </div>
 
                         <!-- Processing Progress Bar Overlay/Card -->
-                        <div id="pdf-status-card" class="hidden bg-slate-900 p-3.5 rounded-xl border border-indigo-500/30 text-xs flex-col gap-2.5 shadow-inner">
+                        <div id="pdf-status-card" class="hidden bg-white p-3.5 rounded-xl border border-indigo-200 text-xs flex-col gap-2.5 shadow-sm">
                             <div class="flex items-center justify-between">
-                                <span id="pdf-status-text" class="text-indigo-300 font-semibold flex items-center gap-2">
+                                <span id="pdf-status-text" class="text-indigo-700 font-semibold flex items-center gap-2">
                                     <i class="fa-solid fa-spinner fa-spin"></i> Membaca Dokumen PDF...
                                 </span>
-                                <span id="pdf-status-count" class="text-slate-400 font-mono">0/0 Halaman</span>
+                                <span id="pdf-status-count" class="text-slate-500 font-mono">0/0 Halaman</span>
                             </div>
-                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden border border-slate-700">
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
                                 <div id="pdf-progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
                             </div>
                         </div>
 
                         <!-- Options for Auto-Generate -->
-                        <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-800">
-                            <label class="flex items-center gap-2 text-slate-300 cursor-pointer">
-                                <input type="checkbox" id="chk-auto-switch" checked class="rounded border-slate-700 text-indigo-600 focus:ring-0">
+                        <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-200">
+                            <label class="flex items-center gap-2 text-slate-700 cursor-pointer">
+                                <input type="checkbox" id="chk-auto-switch" checked class="rounded border-slate-300 text-indigo-600 focus:ring-0">
                                 <span>Otomatis masuk Arena setelah PDF dibaca</span>
                             </label>
                         </div>
                     </div>
 
                     <!-- CARD 2: PURE AI TOPIC GENERATOR (NO PDF NEEDED) -->
-                    <div class="glass-panel p-5 rounded-2xl flex flex-col gap-4 border border-violet-500/40 shadow-xl">
+                    <div class="glass-panel p-5 rounded-2xl flex flex-col gap-4 border border-violet-200 shadow-sm">
                         <div class="flex items-center justify-between">
-                            <h3 class="font-heading font-bold text-lg text-violet-300 flex items-center gap-2">
-                                <i class="fa-solid fa-robot text-yellow-400"></i> 2. Generator AI Berdasarkan Topik
+                            <h3 class="font-heading font-bold text-lg text-violet-700 flex items-center gap-2">
+                                <i class="fa-solid fa-robot text-amber-500"></i> 2. Generator AI Berdasarkan Topik
                             </h3>
-                            <span class="text-[10px] bg-violet-500/20 text-violet-300 font-bold px-2 py-0.5 rounded-full">Gemini AI</span>
+                            <span class="text-[10px] bg-violet-100 text-violet-700 font-bold px-2 py-0.5 rounded-full">Gemini AI</span>
                         </div>
-                        <p class="text-xs text-slate-300">
+                        <p class="text-xs text-slate-600">
                             Tidak punya file PDF? Cukup ketik topik atau materi MIPA yang ingin dipelajari, AI Gemini akan otomatis memuat 25 soal berkualitas!
                         </p>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-1">Topik / Materi MIPA:</label>
-                            <input type="text" id="ai-topic-input" placeholder="Contoh: Fisika Kelas 10 - Hukum Newton & Vektor" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500" />
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Topik / Materi MIPA:</label>
+                            <input type="text" id="ai-topic-input" placeholder="Contoh: Fisika Kelas 10 - Hukum Newton & Vektor" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs text-slate-800 focus:outline-none focus:border-indigo-500" />
                         </div>
 
                         <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-1">Tingkat Kesulitan:</label>
-                                <select id="ai-difficulty-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Tingkat Kesulitan:</label>
+                                <select id="ai-difficulty-select" class="w-full bg-white border border-slate-300 rounded-xl p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-500">
                                     <option value="Sedang / SMP-SMA">Sedang (SMP/SMA)</option>
                                     <option value="Mudah / SD-SMP">Mudah (SD/SMP)</option>
                                     <option value="Tinggi / Olimpiade-UTBK">Tinggi (UTBK/Olimpiade)</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-1">Komposisi Soal:</label>
-                                <select id="ai-composition-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Komposisi Soal:</label>
+                                <select id="ai-composition-select" class="w-full bg-white border border-slate-300 rounded-xl p-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-500">
                                     <option value="Campuran Pilihan Ganda & Isian">Campuran PG & Isian</option>
                                     <option value="100% Pilihan Ganda">100% Pilihan Ganda</option>
                                 </select>
@@ -305,21 +306,21 @@
 
                     <!-- CARD 3: TEAM & TIMER CONFIG -->
                     <div class="glass-panel p-5 rounded-2xl flex flex-col gap-4">
-                        <h3 class="font-heading font-bold text-lg text-slate-200 border-b border-slate-700/60 pb-2">
-                            <i class="fa-solid fa-sliders text-yellow-400 mr-1"></i> Konfigurasi Game & Tim
+                        <h3 class="font-heading font-bold text-lg text-slate-800 border-b border-slate-200 pb-2">
+                            <i class="fa-solid fa-sliders text-amber-500 mr-1"></i> Konfigurasi Game & Tim
                         </h3>
                         <div class="grid grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-1">Jumlah Kelompok</label>
-                                <select id="select-team-count" onchange="updateTeamCountConfig()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Jumlah Kelompok</label>
+                                <select id="select-team-count" onchange="updateTeamCountConfig()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-500">
                                     <option value="2">2 Kelompok</option>
                                     <option value="3" selected>3 Kelompok</option>
                                     <option value="4">4 Kelompok</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-1"><i class="fa-solid fa-stopwatch text-amber-400 mr-1"></i> Timer Soal</label>
-                                <select id="select-timer-duration" onchange="updateTimerConfig()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+                                <label class="block text-xs font-semibold text-slate-700 mb-1"><i class="fa-solid fa-stopwatch text-amber-500 mr-1"></i> Timer Soal</label>
+                                <select id="select-timer-duration" onchange="updateTimerConfig()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-500">
                                     <option value="60">1 Menit</option>
                                     <option value="120" selected>2 Menit</option>
                                     <option value="180">3 Menit</option>
@@ -333,14 +334,14 @@
                         </div>
 
                         <!-- Gemini API Key Input (Collapsible/Optional) -->
-                        <div class="border-t border-slate-800 pt-3">
-                            <button onclick="toggleApiKeyInput()" class="text-xs text-slate-400 hover:text-indigo-300 flex items-center gap-1">
-                                <i class="fa-solid fa-key text-amber-400"></i> <span>Gemini API Key Kustom (Opsional)</span>
+                        <div class="border-t border-slate-200 pt-3">
+                            <button onclick="toggleApiKeyInput()" class="text-xs text-slate-500 hover:text-indigo-600 flex items-center gap-1">
+                                <i class="fa-solid fa-key text-amber-500"></i> <span>Gemini API Key Kustom (Opsional)</span>
                                 <i class="fa-solid fa-chevron-down text-[10px] ml-auto"></i>
                             </button>
                             <div id="api-key-container" class="hidden mt-2 space-y-1">
-                                <input type="password" id="custom-api-key-input" placeholder="Masukkan Gemini API Key (AIzaSy...)" onchange="saveCustomApiKey(this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 font-mono" />
-                                <p class="text-[10px] text-slate-400">Aplikasi sudah dilengkapi parser otomatis. Masukkan API Key jika ingin generator Gemini AI tanpa batas.</p>
+                                <input type="password" id="custom-api-key-input" placeholder="Masukkan Gemini API Key (AIzaSy...)" onchange="saveCustomApiKey(this.value)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-indigo-500 font-mono" />
+                                <p class="text-[10px] text-slate-500">Aplikasi sudah dilengkapi parser otomatis. Masukkan API Key jika ingin generator Gemini AI tanpa batas.</p>
                             </div>
                         </div>
                     </div>
@@ -350,14 +351,14 @@
                 <!-- Right Column: Question Bank Editor (25 Items) -->
                 <div class="lg:col-span-7 flex flex-col gap-4">
                     <div class="glass-panel p-5 rounded-2xl flex flex-col gap-4 max-h-[880px]">
-                        <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
                             <div>
-                                <h3 class="font-heading font-bold text-lg text-slate-200 flex items-center gap-2">
-                                    <i class="fa-solid fa-list-check text-emerald-400"></i> Daftar 25 Soal Arena
+                                <h3 class="font-heading font-bold text-lg text-slate-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-list-check text-emerald-500"></i> Daftar 25 Soal Arena
                                 </h3>
-                                <p class="text-xs text-slate-400">Hasil pembacaan PDF / AI otomatis dimuat di sini dan bisa Anda sunting secara manual.</p>
+                                <p class="text-xs text-slate-600">Hasil pembacaan PDF / AI otomatis dimuat di sini dan bisa Anda sunting secara manual.</p>
                             </div>
-                            <span id="question-status-count" class="text-xs bg-slate-800 text-emerald-400 font-semibold px-3 py-1 rounded-full border border-emerald-500/20 whitespace-nowrap">
+                            <span id="question-status-count" class="text-xs bg-emerald-50 text-emerald-700 font-semibold px-3 py-1 rounded-full border border-emerald-200 whitespace-nowrap">
                                 25/25 Soal Terisi
                             </span>
                         </div>
@@ -376,11 +377,11 @@
     </main>
 
     <!-- MODAL: SOAL ARENA & SESI REBUTAN -->
-    <div id="modal-question" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 md:p-8 border border-indigo-500/30 shadow-2xl relative transform transition-all scale-95 opacity-0 duration-300" id="modal-question-card">
+    <div id="modal-question" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 md:p-8 border border-slate-200 shadow-2xl relative transform transition-all scale-95 opacity-0 duration-300 bg-white" id="modal-question-card">
             
             <!-- Close Button -->
-            <button onclick="closeQuestionModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-full bg-slate-800/60 hover:bg-slate-800 transition">
+            <button onclick="closeQuestionModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
@@ -393,20 +394,20 @@
                 </div>
                 
                 <!-- Live Timer Badge -->
-                <div id="modal-timer-badge" class="flex items-center gap-2 bg-slate-800/90 px-3 py-1 rounded-xl border border-amber-500/40 text-amber-400 font-extrabold text-sm shadow-md">
-                    <i class="fa-solid fa-stopwatch text-amber-400 animate-pulse"></i>
+                <div id="modal-timer-badge" class="flex items-center gap-2 bg-white px-3 py-1 rounded-xl border border-amber-300 text-amber-600 font-extrabold text-sm shadow-sm">
+                    <i class="fa-solid fa-stopwatch text-amber-500 animate-pulse"></i>
                     <span id="timer-display" class="font-mono text-base">02:00</span>
                 </div>
             </div>
 
             <!-- Timer Visual Bar -->
-            <div id="timer-bar-container" class="w-full bg-slate-900 h-2 rounded-full mb-4 overflow-hidden border border-slate-800">
+            <div id="timer-bar-container" class="w-full bg-slate-100 h-2 rounded-full mb-4 overflow-hidden border border-slate-200">
                 <div id="timer-progress-bar" class="bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-500 h-full w-full transition-all duration-1000 linear"></div>
             </div>
 
             <!-- Question Text Prompt -->
-            <div class="mb-6 bg-slate-900/80 p-4 md:p-5 rounded-2xl border border-slate-800">
-                <p id="modal-question-text" class="text-base md:text-xl font-medium text-slate-100 leading-relaxed">
+            <div class="mb-6 bg-slate-50 p-4 md:p-5 rounded-2xl border border-slate-200">
+                <p id="modal-question-text" class="text-base md:text-xl font-medium text-slate-800 leading-relaxed">
                     Pertanyaan soal akan muncul di sini...
                 </p>
             </div>
@@ -420,12 +421,12 @@
             </div>
 
             <!-- Sesi Rebutan & Awarding Section -->
-            <div class="border-t border-slate-700/60 pt-5 mt-2">
+            <div class="border-t border-slate-200 pt-5 mt-2">
                 <div class="flex items-center justify-between mb-3">
-                    <span class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                        <i class="fa-solid fa-bolt text-amber-400 animate-bounce"></i> Sesi Rebutan Guru
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-600 flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-amber-500 animate-bounce"></i> Sesi Rebutan Guru
                     </span>
-                    <span class="text-xs text-slate-400">Pilih kelompok yang menjawab dengan benar:</span>
+                    <span class="text-xs text-slate-500">Pilih kelompok yang menjawab dengan benar:</span>
                 </div>
 
                 <!-- Team Buzz Winner Buttons -->
@@ -433,17 +434,17 @@
                     <!-- Dynamic Team buttons -->
                 </div>
 
-                <div class="flex items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800">
-                    <button id="btn-toggle-reveal" onclick="toggleRevealAnswer()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition flex items-center gap-2">
+                <div class="flex items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-200">
+                    <button id="btn-toggle-reveal" onclick="toggleRevealAnswer()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition flex items-center gap-2 border border-slate-200">
                         <i class="fa-solid fa-eye"></i> Tampilkan Kunci Jawaban
                     </button>
-                    <button onclick="closeQuestionModal()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-xs font-semibold transition">
+                    <button onclick="closeQuestionModal()" class="px-4 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-semibold transition">
                         Batal / Melewati Soal
                     </button>
                 </div>
 
                 <!-- Hidden Key Answer Reveal -->
-                <div id="modal-key-reveal" class="hidden mt-3 p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-xs text-emerald-300 font-mono">
+                <div id="modal-key-reveal" class="hidden mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-700 font-mono">
                     <b>Kunci Jawaban:</b> <span id="modal-key-text">-</span>
                 </div>
             </div>
@@ -452,20 +453,20 @@
     </div>
 
     <!-- MODAL: VICTORY & CELEBRATION -->
-    <div id="modal-victory" class="fixed inset-0 bg-slate-950/90 backdrop-blur-lg z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-panel w-full max-w-md rounded-3xl p-8 text-center border-2 border-yellow-400 shadow-2xl relative animate-bounce-short">
+    <div id="modal-victory" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-md rounded-3xl p-8 text-center border-2 border-amber-400 shadow-2xl relative animate-bounce-short bg-white">
             <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-tr from-yellow-400 to-amber-500 flex items-center justify-center text-slate-950 text-4xl shadow-lg shadow-yellow-400/30">
                 <i class="fa-solid fa-trophy"></i>
             </div>
-            <h2 class="text-xs font-bold uppercase tracking-widest text-yellow-400 mb-1">Juara Arena MIPA!</h2>
-            <h3 id="victory-team-name" class="text-3xl font-heading font-extrabold text-white mb-2">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-amber-600 mb-1">Juara Arena MIPA!</h2>
+            <h3 id="victory-team-name" class="text-3xl font-heading font-extrabold text-slate-800 mb-2">
                 Kelompok Alpha
             </h3>
-            <p class="text-sm text-slate-300 mb-6">
+            <p class="text-sm text-slate-600 mb-6">
                 Selamat! Berhasil menghubungkan 3 garis secara sejajar pada papan arena 5x5!
             </p>
 
-            <button onclick="closeVictoryModal()" class="w-full py-3 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400 text-slate-950 font-heading font-bold rounded-xl text-base shadow-lg shadow-yellow-400/20 transition">
+            <button onclick="closeVictoryModal()" class="w-full py-3 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400 text-slate-900 font-heading font-bold rounded-xl text-base shadow-lg shadow-yellow-400/20 transition">
                 Lanjutkan Permainan
             </button>
         </div>
@@ -621,13 +622,13 @@
                 viewGame.classList.remove('hidden');
                 viewSetup.classList.add('hidden');
                 btnGame.className = "px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 flex items-center gap-2";
-                btnSetup.className = "px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center gap-2";
+                btnSetup.className = "px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-indigo-600 flex items-center gap-2";
                 renderBoard();
             } else {
                 viewGame.classList.add('hidden');
                 viewSetup.classList.remove('hidden');
                 btnSetup.className = "px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 flex items-center gap-2";
-                btnGame.className = "px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center gap-2";
+                btnGame.className = "px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-indigo-600 flex items-center gap-2";
                 renderSetupView();
             }
         }
@@ -651,10 +652,10 @@
 
                 let ownerTeam = isClaimed ? teams.find(t => t.id === tile.claimedBy) : null;
 
-                tileBtn.className = `grid-tile relative rounded-xl font-heading font-bold flex flex-col items-center justify-center p-2 border text-center transition shadow-md ${
+                tileBtn.className = `grid-tile relative rounded-xl font-heading font-bold flex flex-col items-center justify-center p-2 border text-center transition shadow-sm ${
                     isClaimed 
                         ? 'border-transparent text-white scale-[0.98]' 
-                        : 'bg-slate-800/90 border-slate-700 text-slate-200 hover:border-indigo-400 hover:bg-slate-750'
+                        : 'bg-white border-slate-300 text-slate-700 hover:border-indigo-400 hover:bg-indigo-50'
                 }`;
 
                 if (isClaimed && ownerTeam) {
@@ -666,7 +667,7 @@
                     `;
                 } else {
                     tileBtn.innerHTML = `
-                        <span class="text-xl md:text-2xl text-indigo-400 font-extrabold">#${index + 1}</span>
+                        <span class="text-xl md:text-2xl text-indigo-600 font-extrabold">#${index + 1}</span>
                     `;
                 }
 
@@ -684,15 +685,15 @@
 
             teams.forEach(team => {
                 const div = document.createElement('div');
-                div.className = "flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800 shadow-sm";
+                div.className = "flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 shadow-sm";
                 div.innerHTML = `
                     <div class="flex items-center gap-2.5">
                         <span class="w-4 h-4 rounded-full shadow-sm" style="background-color: ${team.color}"></span>
-                        <span class="text-sm font-bold text-slate-100">${team.name}</span>
+                        <span class="text-sm font-bold text-slate-800">${team.name}</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-semibold text-slate-400">Skor:</span>
-                        <span class="text-base font-heading font-extrabold text-yellow-400">${team.score}</span>
+                        <span class="text-xs font-semibold text-slate-500">Skor:</span>
+                        <span class="text-base font-heading font-extrabold text-amber-600">${team.score}</span>
                     </div>
                 `;
                 container.appendChild(div);
@@ -725,22 +726,22 @@
                     const optBtn = document.createElement('button');
                     optBtn.type = 'button';
                     optBtn.onclick = (e) => checkMCAnswer(optionLetter, optBtn);
-                    optBtn.className = "p-3.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 text-sm font-semibold hover:border-indigo-400 hover:bg-slate-750 transition text-left flex items-center justify-between group";
+                    optBtn.className = "p-3.5 rounded-xl bg-white border border-slate-300 text-slate-700 text-sm font-semibold hover:border-indigo-400 hover:bg-slate-50 transition text-left flex items-center justify-between group shadow-sm";
                     optBtn.innerHTML = `
                         <span>${opt}</span>
-                        <i class="fa-solid fa-circle-chevron-right text-slate-500 group-hover:text-indigo-400 transition"></i>
+                        <i class="fa-solid fa-circle-chevron-right text-slate-400 group-hover:text-indigo-500 transition"></i>
                     `;
                     optsContainer.appendChild(optBtn);
                 });
             } else {
                 optsContainer.innerHTML = `
-                    <div class="col-span-2 flex flex-col gap-3 p-2 bg-slate-900/60 rounded-2xl border border-slate-800">
-                        <label class="text-xs text-slate-300 font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-keyboard text-indigo-400"></i> Masukkan Jawaban Siswa:
+                    <div class="col-span-2 flex flex-col gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-200">
+                        <label class="text-xs text-slate-600 font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-keyboard text-indigo-500"></i> Masukkan Jawaban Siswa:
                         </label>
                         <div class="flex gap-2">
-                            <input type="text" id="fill-answer-input" placeholder="Tuliskan jawaban di sini..." onkeydown="if(event.key==='Enter') checkFillAnswer()" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-indigo-500 font-medium" />
-                            <button id="btn-submit-fill" onclick="checkFillAnswer()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-indigo-600/30 flex items-center gap-1.5">
+                            <input type="text" id="fill-answer-input" placeholder="Tuliskan jawaban di sini..." onkeydown="if(event.key==='Enter') checkFillAnswer()" class="flex-1 bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-indigo-500 font-medium shadow-sm" />
+                            <button id="btn-submit-fill" onclick="checkFillAnswer()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-md shadow-indigo-600/30 flex items-center gap-1.5">
                                 <i class="fa-solid fa-circle-check"></i> Cek Jawaban
                             </button>
                         </div>
@@ -829,7 +830,7 @@
             playSound('wrong');
 
             const feedbackBox = document.getElementById('modal-feedback');
-            feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-rose-500/20 text-rose-300 border border-rose-500/40 flex items-center justify-center gap-2";
+            feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-rose-100 text-rose-700 border border-rose-200 flex items-center justify-center gap-2";
             feedbackBox.innerHTML = `<i class="fa-solid fa-hourglass-end text-lg animate-bounce"></i> WAKTU HABIS! Kotak akan otomatis tertutup...`;
 
             setTimeout(() => {
@@ -857,18 +858,18 @@
             if (selectedLetter.toUpperCase() === keyLetter) {
                 stopQuestionTimer();
                 playSound('correct');
-                feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center justify-center gap-2";
+                feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center gap-2";
                 feedbackBox.innerHTML = `<i class="fa-solid fa-circle-check text-lg"></i> JAWABAN BENAR! Silakan pilih kelompok pemenang di bawah.`;
                 
-                btnElement.className = "p-3.5 rounded-xl bg-emerald-600 border border-emerald-400 text-white text-sm font-extrabold transition text-left flex items-center justify-between col-span-1 md:col-span-2 shadow-lg shadow-emerald-600/30";
+                btnElement.className = "p-3.5 rounded-xl bg-emerald-500 border border-emerald-400 text-white text-sm font-extrabold transition text-left flex items-center justify-between col-span-1 md:col-span-2 shadow-lg shadow-emerald-500/30";
             } else {
                 stopQuestionTimer();
                 isAnsweringLocked = true;
                 playSound('wrong');
-                feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-rose-500/20 text-rose-300 border border-rose-500/40 flex items-center justify-center gap-2";
+                feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-rose-50 text-rose-700 border border-rose-200 flex items-center justify-center gap-2";
                 feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark text-lg"></i> JAWABAN SALAH! Kotak akan otomatis tertutup...`;
                 
-                btnElement.className = "p-3.5 rounded-xl bg-rose-600 border border-rose-400 text-white text-sm font-semibold transition text-left flex items-center justify-between";
+                btnElement.className = "p-3.5 rounded-xl bg-rose-500 border border-rose-400 text-white text-sm font-semibold transition text-left flex items-center justify-between";
                 btnElement.innerHTML = `<span>${btnElement.textContent.trim()}</span> <i class="fa-solid fa-xmark"></i>`;
 
                 setTimeout(() => {
@@ -899,13 +900,13 @@
             if (cleanUser === cleanKey || userAns === keyAns) {
                 stopQuestionTimer();
                 playSound('correct');
-                feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center justify-center gap-2";
+                feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center gap-2";
                 feedbackBox.innerHTML = `<i class="fa-solid fa-circle-check text-lg"></i> JAWABAN BENAR! Silakan pilih kelompok pemenang di bawah.`;
             } else {
                 stopQuestionTimer();
                 isAnsweringLocked = true;
                 playSound('wrong');
-                feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-rose-500/20 text-rose-300 border border-rose-500/40 flex items-center justify-center gap-2";
+                feedbackBox.className = "mb-4 p-3 rounded-2xl font-bold text-center text-sm transition-all duration-300 bg-rose-50 text-rose-700 border border-rose-200 flex items-center justify-center gap-2";
                 feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark text-lg"></i> JAWABAN SALAH! Kotak akan otomatis tertutup...`;
 
                 setTimeout(() => {
@@ -956,7 +957,7 @@
         function addGameLog(htmlMsg) {
             const logBox = document.getElementById('game-log');
             const p = document.createElement('p');
-            p.className = "text-slate-300 border-b border-slate-800/80 pb-1";
+            p.className = "text-slate-700 border-b border-slate-200 pb-1";
             p.innerHTML = `<span class="text-slate-500">[${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}]</span> ${htmlMsg}`;
             logBox.prepend(p);
         }
@@ -1007,7 +1008,7 @@
             gridState = Array(25).fill(null).map((_, i) => ({ id: i, claimedBy: null }));
             teams.forEach(t => t.score = 0);
             isGameFinished = false;
-            addGameLog("<span class='text-yellow-400 font-bold'>Papan permainan telah di-reset!</span>");
+            addGameLog("<span class='text-indigo-600 font-bold'>Papan permainan telah di-reset!</span>");
             renderBoard();
         }
 
@@ -1055,7 +1056,7 @@
                 div.className = "flex items-center gap-2";
                 div.innerHTML = `
                     <input type="color" value="${team.color}" onchange="teams[${idx}].color = this.value" class="w-7 h-7 rounded-lg cursor-pointer bg-transparent border-0" />
-                    <input type="text" value="${team.name}" onchange="teams[${idx}].name = this.value" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500" placeholder="Nama Kelompok ${idx + 1}" />
+                    <input type="text" value="${team.name}" onchange="teams[${idx}].name = this.value" class="flex-1 bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-indigo-500 shadow-sm" placeholder="Nama Kelompok ${idx + 1}" />
                 `;
                 container.appendChild(div);
             });
@@ -1067,30 +1068,30 @@
 
             questionsBank.forEach((q, idx) => {
                 const item = document.createElement('div');
-                item.className = "p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2";
+                item.className = "p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-2";
                 item.innerHTML = `
                     <div class="flex items-center justify-between gap-2">
-                        <span class="text-xs font-bold text-indigo-400 font-heading">Kotak #${idx + 1}</span>
-                        <select onchange="updateQuestionType(${idx}, this.value)" class="bg-slate-800 border border-slate-700 text-[11px] text-slate-300 rounded-lg px-2 py-1">
+                        <span class="text-xs font-bold text-indigo-600 font-heading">Kotak #${idx + 1}</span>
+                        <select onchange="updateQuestionType(${idx}, this.value)" class="bg-slate-50 border border-slate-200 text-[11px] text-slate-700 rounded-lg px-2 py-1 focus:outline-none focus:border-indigo-400">
                             <option value="mc" ${q.type === 'mc' ? 'selected' : ''}>Pilihan Ganda</option>
                             <option value="fill" ${q.type === 'fill' ? 'selected' : ''}>Isian Singkat</option>
                         </select>
                     </div>
 
-                    <input type="text" value="${q.question}" onchange="questionsBank[${idx}].question = this.value" placeholder="Tuliskan teks pertanyaan di sini..." class="w-full bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500" />
+                    <input type="text" value="${q.question}" onchange="questionsBank[${idx}].question = this.value" placeholder="Tuliskan teks pertanyaan di sini..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-indigo-500" />
 
                     ${q.type === 'mc' ? `
                         <div class="grid grid-cols-2 gap-1.5 pt-1">
-                            <input type="text" value="${(q.options && q.options[0]) || ''}" onchange="setQuestionOption(${idx}, 0, this.value)" placeholder="Pilihan A" class="bg-slate-950 border border-slate-800 rounded px-2 py-1 text-[11px] text-slate-300" />
-                            <input type="text" value="${(q.options && q.options[1]) || ''}" onchange="setQuestionOption(${idx}, 1, this.value)" placeholder="Pilihan B" class="bg-slate-950 border border-slate-800 rounded px-2 py-1 text-[11px] text-slate-300" />
-                            <input type="text" value="${(q.options && q.options[2]) || ''}" onchange="setQuestionOption(${idx}, 2, this.value)" placeholder="Pilihan C" class="bg-slate-950 border border-slate-800 rounded px-2 py-1 text-[11px] text-slate-300" />
-                            <input type="text" value="${(q.options && q.options[3]) || ''}" onchange="setQuestionOption(${idx}, 3, this.value)" placeholder="Pilihan D" class="bg-slate-950 border border-slate-800 rounded px-2 py-1 text-[11px] text-slate-300" />
+                            <input type="text" value="${(q.options && q.options[0]) || ''}" onchange="setQuestionOption(${idx}, 0, this.value)" placeholder="Pilihan A" class="bg-white border border-slate-300 rounded px-2 py-1 text-[11px] text-slate-700 focus:outline-none focus:border-indigo-400" />
+                            <input type="text" value="${(q.options && q.options[1]) || ''}" onchange="setQuestionOption(${idx}, 1, this.value)" placeholder="Pilihan B" class="bg-white border border-slate-300 rounded px-2 py-1 text-[11px] text-slate-700 focus:outline-none focus:border-indigo-400" />
+                            <input type="text" value="${(q.options && q.options[2]) || ''}" onchange="setQuestionOption(${idx}, 2, this.value)" placeholder="Pilihan C" class="bg-white border border-slate-300 rounded px-2 py-1 text-[11px] text-slate-700 focus:outline-none focus:border-indigo-400" />
+                            <input type="text" value="${(q.options && q.options[3]) || ''}" onchange="setQuestionOption(${idx}, 3, this.value)" placeholder="Pilihan D" class="bg-white border border-slate-300 rounded px-2 py-1 text-[11px] text-slate-700 focus:outline-none focus:border-indigo-400" />
                         </div>
                     ` : ''}
 
                     <div class="flex items-center gap-2 pt-1">
-                        <span class="text-[10px] text-emerald-400 font-semibold uppercase">Kunci Jawaban:</span>
-                        <input type="text" value="${q.answer}" onchange="questionsBank[${idx}].answer = this.value" placeholder="Kunci Jawaban" class="flex-1 bg-slate-950 border border-slate-800 rounded px-2 py-1 text-[11px] text-emerald-300 font-mono" />
+                        <span class="text-[10px] text-emerald-600 font-semibold uppercase">Kunci Jawaban:</span>
+                        <input type="text" value="${q.answer}" onchange="questionsBank[${idx}].answer = this.value" placeholder="Kunci Jawaban" class="flex-1 bg-emerald-50 border border-emerald-200 rounded px-2 py-1 text-[11px] text-emerald-700 font-mono focus:outline-none focus:border-emerald-400" />
                     </div>
                 `;
                 container.appendChild(item);
@@ -1469,7 +1470,7 @@
         function showToast(msg, type = "success") {
             const toast = document.createElement('div');
             toast.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl text-xs font-bold text-white shadow-2xl flex items-center gap-2 transform transition-all duration-300 ${
-                type === 'error' ? 'bg-rose-600' : (type === 'info' ? 'bg-indigo-600' : 'bg-emerald-600')
+                type === 'error' ? 'bg-rose-600' : (type === 'info' ? 'bg-indigo-500' : 'bg-emerald-500')
             }`;
             toast.innerHTML = `<i class="fa-solid ${type === 'error' ? 'fa-triangle-exclamation' : (type === 'info' ? 'fa-circle-info' : 'fa-circle-check')}"></i> ${msg}`;
             document.body.appendChild(toast);
